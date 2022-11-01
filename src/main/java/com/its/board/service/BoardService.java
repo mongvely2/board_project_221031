@@ -27,9 +27,16 @@ public class BoardService {
     }
 
     public BoardDTO findById(Long id) {
+        //        조회수 증가 부터 처리
+        boardRepository.updateHits(id);
+        //        상세내용 가져와서 리턴
 //        BoardDTO result = boardRepository.findById(id);
 //        return result;
         return boardRepository.findById(id);
+    }
 
+
+    public BoardDTO deleteCheck(Long id) {
+        return boardRepository.deleteCheck(id);
     }
 }

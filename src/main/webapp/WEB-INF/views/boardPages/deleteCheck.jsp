@@ -15,10 +15,16 @@
 <body>
 <div class="container">
     <form action="deleteBoard">
-        <input type="text" name="boardPass" placeholder="글작성비밀번호입력">
-        <button onclick="delete()"></button>
+        <input type="text" name="boardPass" id="boardPass" placeholder="글작성비밀번호입력">
+        <button onclick="boardDelete()"></button>
 
     </form>
 </div>
 </body>
+<script>
+    const boardDelete = () => {
+        if (document.boardPass.value == )
+    }
+</script>
+
 </html>

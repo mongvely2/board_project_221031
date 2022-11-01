@@ -10,10 +10,18 @@
 <head>
     <title>boardDetail.jsp</title>
   <link rel="stylesheet" href="/resources/css/bootstrap.rtl.min.css">
+  <style>
+    #detail {
+      width: 800px;
+      margin-top: 50px;
+    }
+  </style>
+
 </head>
 <body>
-<div class="container">
-  <table class="table">
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+<div class="container" id="detail" >
+  <table class="table table-hover">
     <tr>
       <th>번호(id)</th>
       <td>${result.id}</td>
@@ -43,15 +51,25 @@
       <td>${result.boardHits}</td>
     </tr>
   </table>
-  <button class="btn btn-danger" onclick="deleteBoard(${board.id})">삭제</button>
-  <button class="btn btn-primary" onclick="updateBoard(${board.id})">수정</button>
+  <button class="btn btn-danger" onclick="listFn()">목록</button>
+  <button class="btn btn-primary" onclick="updateFn()">수정</button>
+  <button class="btn btn-danger" onclick="deleteFn()">삭제</button>
   <a href="/" class="btn btn-dark">홈으로 이동</a>
 </div>
 </body>
 <script>
-  const deleteBoard = boardId => {
-    console.log("delete 실행")
-    location.href = "/deleteCheckPage";
+  const listFn = () => {
+    location.href = "/board/";
+  }
+
+  const updateFn = () => {
+    location.href = "/board/update";
+  }
+  const deleteFn = () => {
+    const result = '${result.id}';
+    console.log(result);
+    location.href = "/board/delete";
+
   }
 </script>
 </html>

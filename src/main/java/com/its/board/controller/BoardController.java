@@ -5,24 +5,25 @@ import com.its.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
     @Autowired
     private BoardService boardService;
 
-    @GetMapping("/board/save")
+    // @RequestMapping 없는 경우 ->
+    // @GetMapping("/board/save") -> /board/board/save 주소요청 반응 _ 잘못된 방법
+    // = @RequestMapping(value = "/save", method = RequestMethod.GET) _ 위, 아래랑 동일
+    @GetMapping("/save")
     public String boardSaveForm() {
-        return "boardSave";
+        return "boardPages/boardSave";
     }
 
-    @PostMapping("/board/save")
+    @PostMapping("/save")
     public String save(@ModelAttribute BoardDTO boardDTO) {
         boolean result = boardService.save(boardDTO);
         if (result) {
@@ -32,23 +33,26 @@ public class BoardController {
         }
     }
 
-    @GetMapping("/board/")
+    @GetMapping("/")
     public String boardList(Model model){
         List<BoardDTO> boardList = boardService.boardList();
         model.addAttribute("boardList", boardList);
-        return "boardList";
+        return "boardPages/boardList";
     }
 
-    @GetMapping("/board")
+//    상세조회: /board 로 호출하는데 기본 리퀘스트맵핑이 /board로 되어있어서 공란으로 기입함
+    @GetMapping
     public String findById(@RequestParam("id") Long id, Model model) {
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("result", boardDTO);
-        return "/boardDetail";
+        return "boardPages/boardDetail";
     }
 
-    @GetMapping("/deleteCheckPage")
-    public String deleteCheck() {
-        return "deleteCheck";
+    @GetMapping("/delete")
+    public String deleteCheck(@RequestParam("result") Long id, Model model) {
+        BoardDTO result = boardService.deleteCheck(id);
+        model.addAttribute("result", result);
+        return "boardPages/deleteCheck";
     }
 
 //    @GetMapping("/board")

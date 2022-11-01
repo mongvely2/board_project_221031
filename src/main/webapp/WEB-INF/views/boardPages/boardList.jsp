@@ -7,15 +7,23 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>boardList.jsp</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.rtl.min.css">
     <script src="/resources/js/jquery.js"></script>
+    <style>
+        #list{
+            width: 800px;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <table class="table table-striped table-hover">
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+<div class="container" id="list">
+    <table class="table table-striped table-hover text-center">
         <tr>
             <th>번호</th>
             <th>작성자</th>
@@ -35,7 +43,9 @@
                 <a href="/board?id=${board.id}" onclick="hit('${board.id}')" id="boardHit">${board.boardTitle}</a>
             </td>
             <td>${board.boardContents}</td>
-            <td>${board.boardCreatedDate}</td>
+            <td>
+                    <fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate>
+            </td>
             <td>${board.boardHits}</td>
             <td>
 <%--                <a href="/board?id=${board.id}">조회</a>--%>

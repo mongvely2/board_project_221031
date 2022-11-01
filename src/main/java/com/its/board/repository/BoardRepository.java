@@ -22,7 +22,16 @@ public class BoardRepository {
         return sql.selectList("Board.boardList");
     }
 
+    public void updateHits(Long id) {
+        sql.update("Board.updateHits", id);
+    }
+
     public BoardDTO findById(Long id) {
         return sql.selectOne("Board.findById", id);
+    }
+
+
+    public BoardDTO deleteCheck(Long id) {
+        return sql.selectOne("Board.deleteCheck", id);
     }
 }
