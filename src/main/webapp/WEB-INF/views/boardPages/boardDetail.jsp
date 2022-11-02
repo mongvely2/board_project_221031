@@ -66,8 +66,8 @@
     location.href = "/board/update?id="+'${result.id}';
   }
   const deleteFn = () => {
-    <%--const result = '${result.id}';--%>
-    location.href = "/board/deleteForm?id="+'${result.id}';
+    const id = '${result.id}';
+    location.href = "/board/deleteForm?id="+ id;
 
 
   }

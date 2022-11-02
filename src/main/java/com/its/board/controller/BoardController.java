@@ -51,6 +51,8 @@ public class BoardController {
 
     @GetMapping("/deleteForm")
     public String deleteCheck(@RequestParam("id") Long id, Model model) {
+//        BoardDTO boardDTO = boardService.findById(id);
+//        -> findById 메서드와 같기 때문에 굳이 메서드 선언하지 않고 findById 메서드 활용해도 됨
         BoardDTO result = boardService.deleteCheck(id);
         model.addAttribute("result", result);
         return "boardPages/deleteCheck";
@@ -65,7 +67,8 @@ public class BoardController {
     //    findById 메서드와 동일한 작업 진행함으로 해당 메서드 활용(따로 만들어도 되긴 함)
     @GetMapping("/update")
     public String updateForm(@RequestParam("id") Long id, Model model) {
-    //    findById 메서드와 동일한 작업 진행함으로 해당 메서드 활용_서비스,리파지토리,맵퍼,쿼리 작성 안해도 됨(따로 만들어도 되긴 함)
+    //    findById 메서드와 동일한 작업 진행함으로 해당 메서드 활용
+    //    _서비스,리파지토리,맵퍼,쿼리 작성 안해도 됨(따로 만들어도 되긴 함)
         BoardDTO result = boardService.findById(id);
         model.addAttribute("result", result);
 //        System.out.println("id = " + id + ", model = " + model);
