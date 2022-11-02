@@ -34,4 +34,16 @@ public class BoardRepository {
     public BoardDTO deleteCheck(Long id) {
         return sql.selectOne("Board.deleteCheck", id);
     }
+
+    public int deleteBoard(Long id) {
+        return sql.delete("Board.deleteBoard", id);
+    }
+
+//    public BoardDTO updateForm(Long id) {
+//        return sql.selectOne("Board.updateForm", id);
+//    }
+
+    public void update(BoardDTO boardDTO) {
+        sql.update("Board.update", boardDTO);
+    }
 }

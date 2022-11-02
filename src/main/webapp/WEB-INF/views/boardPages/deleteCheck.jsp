@@ -13,17 +13,23 @@
     <script src="/resources/js/jquery.js"></script>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container">
-    <form action="deleteBoard">
+    <form action="board/delete" name="deleteFn">
         <input type="text" name="boardPass" id="boardPass" placeholder="글작성비밀번호입력">
-        <button onclick="boardDelete()"></button>
-
+        <input type="button" onclick="boardDelete()" value="확인">
     </form>
 </div>
 </body>
 <script>
     const boardDelete = () => {
-        if (document.boardPass.value == )
+        const pass = document.getElementById("boardPass").value;
+        const dbPass = '${result.boardPass}'
+        if (pass == dbPass) {
+            location.href = "/board/delete?id=" + '${result.id}'
+        } else {
+            alert("비밀번호가 일치하지 않습니다")
+        }
     }
 </script>
 

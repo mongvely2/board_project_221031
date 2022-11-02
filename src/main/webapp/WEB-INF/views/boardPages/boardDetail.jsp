@@ -63,12 +63,12 @@
   }
 
   const updateFn = () => {
-    location.href = "/board/update";
+    location.href = "/board/update?id="+'${result.id}';
   }
   const deleteFn = () => {
-    const result = '${result.id}';
-    console.log(result);
-    location.href = "/board/delete";
+    <%--const result = '${result.id}';--%>
+    location.href = "/board/deleteForm?id="+'${result.id}';
+
 
   }
 </script>
