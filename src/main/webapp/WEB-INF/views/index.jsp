@@ -18,6 +18,12 @@
 
 <button class="btn btn-primary" onclick="boardSaveForm()" >글작성</button>
 <button class="btn btn-primary" onclick="boardList()" >글목록</button>
+
+    <a href="/board/paging">페이징 목록</a>
+    <a href="/board/paging?page=10">10 페이징 목록</a>
+    <a href="/board/paging?page=3">3 페이징 목록</a>
+<%--    <a href="/board/paging">페이징 목록</a>--%>
+
 <%--<button class="btn btn-primary" onclick="boardDetail()" >상세조회</button>--%>
 </div>
 </body>
