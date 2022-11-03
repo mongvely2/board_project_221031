@@ -56,7 +56,6 @@ public class BoardController {
         model.addAttribute("boardList", pagingList);
         model.addAttribute("paging", pageDTO);
         return "boardPages/boardPaging";
-
     }
 
 //    상세조회: /board 로 호출하는데 기본 리퀘스트맵핑이 /board로 되어있어서 공란으로 기입함
@@ -107,8 +106,17 @@ public class BoardController {
         BoardDTO dto = boardService.findById(boardDTO.getId());
         model.addAttribute("result", dto);
         return "boardPages/boardDetail";
-
     }
+
+    // 검색처리
+    @GetMapping("/search")
+    public String search(@RequestParam("type") String type,
+                         @RequestParam("q") String q, Model model) {
+        List<BoardDTO> searchList = boardService.search(type, q);
+        model.addAttribute("boardList", searchList);
+        return "boardPages/boardList";
+    }
+
 
 
 

@@ -99,7 +99,9 @@ public class BoardService {
         page=2,3
         page=3,6
          */
+
         int pagingStart = (page-1) * PagingConst.PAGE_LIMIT;
+        // Map<key=type, value=type>
         Map<String, Integer> pagingParams = new HashMap<>();
         pagingParams.put("start", pagingStart);
         pagingParams.put("limit", PagingConst.PAGE_LIMIT);
@@ -126,5 +128,13 @@ public class BoardService {
         pageDTO.setStartPage(startPage);
         pageDTO.setEndPage(endPage);
         return pageDTO;
+    }
+
+    public List<BoardDTO> search(String type, String q) {
+        Map<String, String> searchParams = new HashMap<>();
+        searchParams.put("type", type);
+        searchParams.put("q", q);
+        List<BoardDTO> searchList = boardRepository.search(searchParams);
+        return searchList;
     }
 }

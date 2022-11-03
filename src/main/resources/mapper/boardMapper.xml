@@ -16,7 +16,7 @@
     </insert>
 
     <select id="boardList" resultType="board">
-        select * from board_table
+        select * from board_table order by id desc
     </select>
 
     <update id="updateHits" parameterType="Long">
@@ -55,6 +55,13 @@
 
     <select id="boardCount" resultType="Integer">
         select count(id) from board_table
+    </select>
+
+<!--    컬럼이름을 전달받은 변수명으로 바꿀 경우엔 ${} 로 처리 _ DB에서는 원래 #만 씀
+        DB에서 like 사용시 '%#{q}% 로 작성하면 인식을 못하여 concat 이라는 batis 함수 사용   -->
+    <select id="search" parameterType="java.util.HashMap" resultType="board">
+        select * from board_table where ${type}
+        like concat('%',#{q},'%') order by id desc
     </select>
 
 
