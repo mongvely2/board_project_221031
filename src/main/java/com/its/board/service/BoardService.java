@@ -30,18 +30,19 @@ public class BoardService {
         7. repository로 dto 객체 전달
          */
         if (!boardDTO.getBoardFile().isEmpty()) {
-            System.out.println("파일있음");
-            MultipartFile boardFile = boardDTO.getBoardFile(); //   1
-            String originalFileName = boardFile.getOriginalFilename(); //   2
-            System.out.println("originalFileName = " + originalFileName);
-            System.out.println(System.currentTimeMillis());
-            String storedFileName = System.currentTimeMillis() + "-" + originalFileName; // 3
-            System.out.println("storedFileName = " + storedFileName);
-            boardDTO.setOriginalFileName(originalFileName); //  4
-            boardDTO.setStoredFileName(storedFileName); //  4
+//            System.out.println("파일있음");
+
+            MultipartFile boardFile = boardDTO.getBoardFile(); // 1-> DTO에 담긴 boardFile 불러오기
+            String originalFileName = boardFile.getOriginalFilename(); // 2->원본이름 가져오기
+//            System.out.println("originalFileName = " + originalFileName);
+//            System.out.println(System.currentTimeMillis());
+            String storedFileName = System.currentTimeMillis() + "-" + originalFileName; // 3->서버관리용 이름 만들기
+//            System.out.println("storedFileName = " + storedFileName);
+            boardDTO.setOriginalFileName(originalFileName); //  4 원본파일명 dto에 담기
+            boardDTO.setStoredFileName(storedFileName); //  4 서버관리용파일명 dto에 담기
             String savePath = "D:\\spring_img\\" + storedFileName; //   5 -> 경로지정, 뒤에 백슬래시(\\) 두 개 붙여줘야함
             boardFile.transferTo(new File(savePath));   //  6 -> 첨부파일 저장처리
-            boardDTO.setFileAttached(1);  // 파일이 있을 경우 1이란 값 부여, 없으면 0부여(else)
+            boardDTO.setFileAttached(1);  // fileAttached 필드에 파일이 있을 경우 1이란 값 부여, 없으면 0부여(else)
             BoardDTO savedBoard = boardRepository.save(boardDTO); //  7 -> save(텍스트입력값, 기존에 하던것) 처리
             boardRepository.saveFileName(savedBoard);
         } else {

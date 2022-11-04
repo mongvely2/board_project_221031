@@ -68,6 +68,7 @@ public class BoardController {
 //    상세조회: /board 로 호출하는데 기본 리퀘스트맵핑이 /board로 되어있어서 공란으로 기입함
     @GetMapping
     public String findById(@RequestParam("id") Long id, Model model,
+//                           @RequestParam("boardContents") int page){
                            @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         boardService.updateHits(id);
         BoardDTO boardDTO = boardService.findById(id);
@@ -75,8 +76,8 @@ public class BoardController {
         model.addAttribute("page", page);
 //        System.out.println("조회: boardDTO = " + boardDTO);
         // 상세조회한 게시글에도 댓글 내용 포함시켜야 함, 아래부터 상세게시글 댓글보이는 코드
-        // 코멘트 서비스에 있는 댓글 리스트 메서드 바로 활용함
-        // 반드시 코멘트서비스 클래스 오토와이어드 추가 선언!!!
+        // CommentService에 있는 댓글 리스트 메서드 바로 활용함
+        // 반드시 CommentService Class 오토와이어드 추가 선언!!!
         List<CommentDTO> commentDTOList = commentService.findAll(id);
         model.addAttribute("commentList", commentDTOList);
         return "boardPages/boardDetail";

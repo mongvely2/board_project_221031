@@ -21,10 +21,12 @@
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container" id="write-form">
+<%--    파일첨부시 form태그에 < enctype="multipart/form-data" > 해당 태그 작성해줘야 함, method는 무조건 post만 가능   --%>
     <form action="/board/save" method="post" name="saveForm" enctype="multipart/form-data">
         작성자: <input type="text" name="boardWriter" placeholder="작성자입력" class="form-control"><br>
         글비밀번호: <input type="text" name="boardPass" placeholder="글비밀번호입력" class="form-control"><br>
         제목: <input type="text" name="boardTitle" placeholder="제목입력" class="form-control"><br>
+<%--        textarea: 칸이 넓음, 보통 게시글 작성할 때 씀         --%>
         <textarea name="boardContents" cols="30" rows="10" placeholder="내용입력" class="form-control"></textarea>
 <%--        내용: <input type="text" name="boardContents" placeholder="내용입력" class="form-control"><br>--%>
         <input type="file" class="form-control" name="boardFile">
