@@ -16,7 +16,10 @@ public class CommentController {
 
     @PostMapping("/save")
     public @ResponseBody List<CommentDTO> commentSave(@ModelAttribute CommentDTO commentDTO) {
+        System.out.println("commentDTO = " + commentDTO);
         commentService.commentSave(commentDTO);
-        return null;
+        List<CommentDTO> result = commentService.findAll(commentDTO.getBoardId());
+//        ajax 에서 비동기식으로 보여주기에 return 값이 jsp 주소가 아님
+        return result;
     }
 }
