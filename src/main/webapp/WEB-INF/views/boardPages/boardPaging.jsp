@@ -40,7 +40,7 @@
                 <td>${board.boardWriter}</td>
                 <td>${board.boardPass}</td>
                 <td>
-                    <a href="/board?id=${board.id}&page=${paging.page}" onclick="hit('${board.id}')" id="boardHit">${board.boardTitle}</a>
+                    <a href="/board?id=${board.id}&page=${paging.page}">${board.boardTitle}</a>
                 </td>
                 <td>${board.boardContents}</td>
                 <td>
@@ -88,7 +88,7 @@
 
                 <c:otherwise>
                     <li class="page-item">
-<%--                                                                    i>i: 클릭한 페이지로 이동하는 코드         --%>
+<%--                                                                  i>i: 클릭한 페이지로 이동하는 코드         --%>
                         <a class="page-link" href="/board/paging?page=${i}">${i}</a>
                     </li>
                 </c:otherwise>

@@ -37,7 +37,7 @@
                   <option value="boardWriter">작성자</option>
               </select>
               <input type="search" name="q" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-              <button class="btn btn-outline-light"><i class="bi bi-binoculars"></i></button>
+              <button class="btn btn-outline-light"><i class="bi bi-search-heart"></i></button>
           </div>
       </form>
 

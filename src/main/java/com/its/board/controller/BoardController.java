@@ -83,18 +83,20 @@ public class BoardController {
         return "boardPages/boardDetail";
     }
 
-    @GetMapping("/deleteForm")
+    @GetMapping("/deleteCheck")
     public String deleteCheck(@RequestParam("id") Long id, Model model) {
 //        BoardDTO boardDTO = boardService.findById(id);
 //        -> findById 메서드와 같기 때문에 굳이 메서드 선언하지 않고 findById 메서드 활용해도 됨
         BoardDTO result = boardService.deleteCheck(id);
         model.addAttribute("result", result);
+//        System.out.println("1"+result);
         return "boardPages/deleteCheck";
     }
 
     @GetMapping("/delete")
     public String deleteBoard(@RequestParam("id") Long id) {
         int result = boardService.deleteBoard(id);
+//        System.out.println("2"+result);
         return "redirect:/board/";
     }
 

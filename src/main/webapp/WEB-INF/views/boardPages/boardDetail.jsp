@@ -67,6 +67,8 @@
     <button class="btn btn-warning" onclick="updateFn()">수정</button>
     <button class="btn btn-danger" onclick="deleteFn()">삭제</button>
 </div>
+<%--    --------------------------여기까지 글내용 상세조회-----------------------------
+--%>
 <div class="container mt-5" id="comment-write">
     <div class="input-group-sm mb-3">
         <div class="form-floating">

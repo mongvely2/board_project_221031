@@ -13,7 +13,6 @@ public class CommentRepository {
     private SqlSessionTemplate sql;
 
     public void commentSave(CommentDTO commentDTO) {
-        System.out.println("commentDTO = " + commentDTO);
         sql.insert("Comment.save", commentDTO);
     }
 
